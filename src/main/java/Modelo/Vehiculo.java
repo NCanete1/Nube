@@ -1,4 +1,7 @@
 package Modelo;
+
+import java.util.List;
+
 public class Vehiculo {
     private String nombre, color, marca;
     private int año, precio;
@@ -80,5 +83,9 @@ public class Vehiculo {
 
     public void rellenarCombustible(double cantCombustible) {
         this.cantidadCombustible += cantCombustible;
+    }
+
+    public List<Vehiculo> stream() {
+        return null;
     }
 }

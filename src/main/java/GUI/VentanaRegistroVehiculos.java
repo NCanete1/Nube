@@ -3,6 +3,9 @@ package GUI;
 import java.awt.*;
 import javax.swing.*;
 import javax.swing.event.*;
+
+import Modelo.*;
+
 import java.awt.event.*;;
 
 public class VentanaRegistroVehiculos extends JFrame {
@@ -97,7 +100,17 @@ public class VentanaRegistroVehiculos extends JFrame {
         ActionListener registrar = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-
+                Automotora automotora = new Automotora();
+                if (modelo.getText().isEmpty() || año.getText().isEmpty() || precio.getText().isEmpty() || kmrecorridos.getText().isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "Favor de llenar los campos vacios");
+                } else {
+                    automotora.AñadirVehiculo(modelo.getText(), color.getSelectedItem().toString(), marca.getSelectedItem().toString(), Integer.parseInt(año.getText()), Integer.parseInt(precio.getText()), Double.parseDouble(kmrecorridos.getText()));
+                    JOptionPane.showMessageDialog(null,"Vehiculo Agregado!");
+                    VentanaMenu ventana = new VentanaMenu();
+                    ventana.setVisible(true);
+                    dispose();
+                }
+    
             }
         };
         ActionListener cancelar = new ActionListener() {

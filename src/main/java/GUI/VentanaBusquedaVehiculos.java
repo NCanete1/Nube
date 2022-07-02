@@ -6,6 +6,11 @@ import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.event.*;
 
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import Modelo.Automotora;
 
 public class VentanaBusquedaVehiculos extends JFrame {
@@ -18,6 +23,7 @@ public class VentanaBusquedaVehiculos extends JFrame {
 
     public VentanaBusquedaVehiculos() {
         Menu();
+        MenuEtiqueta();
         pack();
         setVisible(true);
     }
@@ -28,8 +34,6 @@ public class VentanaBusquedaVehiculos extends JFrame {
         buscarboton = new JButton("Buscar Vehículo");
         bcancelar = new JButton("Cancelar");
         modelo = new JTextField(5);
-        labelmodelo = new JLabel("Modelo:");
-        labelmarca = new JLabel("Marca:");
 
         String[] marcaItems = { "CHEVROLET", "NISSAN", "FERRARI", "SUSUKI", "TOYOTA" };
         marca = new JComboBox(marcaItems);
@@ -44,29 +48,22 @@ public class VentanaBusquedaVehiculos extends JFrame {
         add(buscarboton);
         add(bcancelar);
         add(modelo);
-        add(labelmodelo);
-        add(labelmarca);
         add(marca);
 
         // Posicionamiento
         buscarboton.setBounds(50, 250, 150, 30);
         bcancelar.setBounds(295, 250, 150, 30);
         modelo.setBounds(220, 90, 220, 20);
-        labelmodelo.setBounds(80, 90, 100, 20);
-        labelmarca.setBounds(80, 175, 45, 20);
         marca.setBounds(220, 180, 160, 20);
 
         // Listener
         ActionListener buscar = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                Automotora automotora= new Automotora();
-                String[] columnas ={"Modelo","Color","Marca","Año","Precio","Km.Recorridos"};
-                String[][] datos = {{"Celerio","Gris","Suzuki",
-                "2018","5000000","40000.4"} , {"Hilux","Rojo","Toyota",
-                "2020","12000000","1000"},{"Qashqai","Blanco","Nissan",
-                "2018","10590000","20000.23"}};
-                VentanaTabla ventana = new VentanaTabla(datos,columnas);
+                Automotora automotora = new Automotora();
+                String[] columnas = { "Modelo", "Color", "Marca", "Año", "Precio", "Km.Recorridos" };
+                String[][] datos = null;
+                VentanaTabla ventana = new VentanaTabla(datos, columnas);
                 ventana.setVisible(true);
             }
         };
@@ -84,4 +81,20 @@ public class VentanaBusquedaVehiculos extends JFrame {
         bcancelar.addActionListener(cancelar);
 
     }
+
+    public void MenuEtiqueta() {
+        // Definiendo Componentes
+        labelmodelo = new JLabel("Modelo:");
+        labelmarca = new JLabel("Marca:");
+
+        // Add
+        add(labelmodelo);
+        add(labelmarca);
+
+        // Posicionamiento
+        labelmodelo.setBounds(80, 90, 100, 20);
+        labelmarca.setBounds(80, 175, 45, 20);
+
+    }
+
 }

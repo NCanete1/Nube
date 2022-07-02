@@ -37,6 +37,9 @@ public class Automotora {
         return vendedorList;
     }
 
+    public void AñadirVehiculo(String modelo,String color,String marca,int año,int precio,double kmRecorridos){
+        this.vehiculosAVenta.add(new Vehiculo(modelo,color,marca,año,precio,kmRecorridos));
+    }
 
     public void añadirVehiculosPorVender(){
         this.vehiculosAVenta.add(new Vehiculo("Celerio","Gris","Suzuki",
@@ -50,6 +53,8 @@ public class Automotora {
         this.vehiculosAVenta.add(new Vehiculo("Sail","Gris","Chevrolet",
                 2020,6000000,0));
     }
+
+
     public void venderAuto(String nombre, int año){
         for(Vehiculo auto: this.vehiculosAVenta){
             if(auto.getNombre().equals(nombre) && auto.getAño()==año){
@@ -59,20 +64,11 @@ public class Automotora {
             }
         }
     }
-    public List<Vehiculo> buscarAutoNombre(String nombre){
-        List<Vehiculo> vehiculos= new ArrayList<Vehiculo>();
-        for(Vehiculo auto : this.vehiculosAVenta){
-            if(auto.getNombre().equals(nombre)){
-                vehiculos.add(auto);
-            }
-        }
-        return vehiculos;
-        }
 
-    public List<Vehiculo> buscarAutoMarca(String marca){
+    public List<Vehiculo> buscarAutoNombreyMarca(String modelo,String marca){
         List<Vehiculo> vehiculos= new ArrayList<Vehiculo>();
         for(Vehiculo auto : this.vehiculosAVenta){
-            if(auto.getMarca().equals(marca)){
+            if(auto.getMarca().equals(marca) && auto.getNombre().equals(modelo)){
                 vehiculos.add(auto);
             }
         }
